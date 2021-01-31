@@ -15,11 +15,9 @@ import java.util.List;
 
 @Service
 public class ReceptionService {
-    @Getter
+
     private DoctorRepository doctorRepository;
-    @Getter
     private TicketRepository ticketRepository;
-    @Getter
     private SpecialisationRepository specialisationRepository;
     private ReceptionRepository receptionRepository;
     private UserRepository userRepository;
@@ -41,12 +39,14 @@ public class ReceptionService {
         return ticketRepository.findAll();
     }
 
+
+    //Метод добавляет врача в талон
     public void addDoctorInTicket(long doctorId, Ticket ticket) {
         Doctor doctor = doctorRepository.findById(doctorId).get();
-
         ticket.setDoctor(doctor);
         ticketRepository.save(ticket);
     }
+
 
     // Метод добавляет работника регистратуры в базу данных
     // Метод также проверяет на наличие одинакового email
@@ -55,6 +55,7 @@ public class ReceptionService {
             receptionRepository.save(receptionist);
         }
     }
+
 
     // Метод возвращает из базы данных всех работников регистратуры
     public List<Receptionist> getReceptionists(){
@@ -69,6 +70,7 @@ public class ReceptionService {
         userRepository.delete(user);
         receptionRepository.delete(receptionist);
     }
+
 
     // Метод возвращает работника регистратуры по логину
     public  Receptionist getReceptionistByLogin(){

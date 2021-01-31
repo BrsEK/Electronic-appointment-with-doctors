@@ -18,6 +18,7 @@ public class SpecialisationController {
         this.specialisationService = specialisationService;
     }
 
+
     @GetMapping(value = "/")
     public String addSpecialisation(Model model){
         model.addAttribute("specialisation", new Specialisation());
@@ -31,6 +32,7 @@ public class SpecialisationController {
         specialisationService.addSpecialisation(specialisation);
         return "redirect:/specialisation/";
     }
+
 
     @PostMapping(value = "delete_specialisations")
     public String deleteSpecialisations(@RequestParam(name = "specialisationId") long id){

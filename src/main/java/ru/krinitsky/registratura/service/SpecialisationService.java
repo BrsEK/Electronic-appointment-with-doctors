@@ -18,16 +18,19 @@ public class SpecialisationService {
         this.specialisationRepository = specialisationRepository;
     }
 
+
     // Добавление специализации
     // Перед добавлением убеждаемся что в базе нет такой специализации
     public void addSpecialisation(Specialisation specialisation) {
         specialisationRepository.save(specialisation);
     }
 
+
     // Метод возвращает лист со специализациями которые есть в базе данных
     public List getSpecialisations() {
         return specialisationRepository.findAll();
     }
+
 
     // Метод метод удаляет из базы данных специализацию
     public void deleteSpecialisations(long specialisationId) {

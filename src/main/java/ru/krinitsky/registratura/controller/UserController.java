@@ -23,15 +23,18 @@ public class UserController {
         this.userService = userService;
     }
 
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registrationForm(User user){
         return "registration";
     }
 
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginForm(){
         return "login";
     }
+
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String regUser(

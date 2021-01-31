@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 @Service
 public class TicketService {
 
-
     private TicketRepository ticketRepository;
     private DoctorRepository doctorRepository;
     private ClientService clientService;
@@ -153,6 +152,7 @@ public class TicketService {
         List<Ticket> ticketsWithSingleDate = ticketRepository.findByDoctorAndDate(ticket.getDoctor(), ticket.getDate());
         return ticketsWithSingleDate;
     }
+
 
     // Метод  удаляет талон
     public void removeTicketById(long ticketId) {

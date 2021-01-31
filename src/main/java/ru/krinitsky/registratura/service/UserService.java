@@ -33,19 +33,19 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(userName);
-        if (user == null){
+        if (user == null) {
             throw new UsernameNotFoundException("Пользователь не найден");
         }
         return user;
     }
 
-    public boolean saveUser(User user, int roleId){
+
+    public boolean saveUser(User user, int roleId) {
         User userFromDb =
                 userRepository.findByUsername(user.getUsername());
-        if (userFromDb != null){
+        if (userFromDb != null) {
             return false;
         }
-
         Role role = roleRepository.findById(roleId).get();
         user.getRoles().add(role);
         user.setPassword(encoder.encode(user.getPassword()));
@@ -54,8 +54,9 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
+
     //Удалить пользователя
-    public void deleteUser(String username){
+    public void deleteUser(String username) {
         userRepository.findByUsername(username);
     }
 }

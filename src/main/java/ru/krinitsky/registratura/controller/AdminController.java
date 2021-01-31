@@ -88,7 +88,7 @@ public class AdminController {
     @PostMapping(value = "/addSpecialisation")
     public String addSpecialisation(@ModelAttribute("specialisation") @Valid Specialisation specialisation,
                                     BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "/admin/specialisations";
         }
         specialisationService.addSpecialisation(specialisation);
@@ -116,7 +116,7 @@ public class AdminController {
     // Метод добавляет работника регистратуры  и возвращает страницу
     @PostMapping(value = "/addReceptionist")
     public String addReceptionist(@ModelAttribute("receptionist") @Valid Receptionist receptionist, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "/admin/receptionists";
         }
         receptionService.addReceptionist(receptionist);

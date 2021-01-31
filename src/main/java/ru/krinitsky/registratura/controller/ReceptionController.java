@@ -31,6 +31,7 @@ public class ReceptionController {
         this.subscriberService = subscriberService;
     }
 
+
     // Метод открывает главную страницу
     @GetMapping(value = "/")
     public String showIndex(Model model) {

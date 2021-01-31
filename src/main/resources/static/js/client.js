@@ -2,7 +2,7 @@ $(function(){
   // Запускаем функцию при изменении специализации
 src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
   $('#specSelect').on('change', function(){
-    let spec_Id =  $(this).val();  // создаем переменную с выбранной специализацией - это Object из которого нам нужен будет value
+    let spec_Id =  $(this).val();
     console.log(spec_Id);
     $.ajax({
       type: "GET",
@@ -19,14 +19,14 @@ $(function(){
   // Запускаем функцию при изменении доктора
 src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
   $('#doctorSelect').on('change'  , function(){
-    let doc_Id =  $(this).val();  // создаем переменную с выбранной специализацией - это Object из которого нам нужен будет value
+    let doc_Id =  $(this).val();
     console.log(doc_Id);
     $.ajax({
       type: "GET",
       dataType: 'json',
       url: '/client/dates?docId=' + doc_Id
     }).done(function(tickets){
-      fillSelectDate(tickets); // выводит второй список по событию из первого селекта
+      fillSelectDate(tickets); // выводит третий список по событию из вторго селекта
     })
 })
 })
@@ -36,7 +36,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
 $(function(){
 src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
   $('#dateSelect').on('change', function(){
-     let ticketId =  $(this).val();  // создаем переменную с выбранной специализацией - это Object из которого нам нужен будет value
+     let ticketId =  $(this).val();
      console.log('ticketId ' + ticketId);
      $.ajax({
        type: "GET",

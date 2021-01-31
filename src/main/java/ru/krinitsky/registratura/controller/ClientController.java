@@ -83,7 +83,7 @@ public class ClientController {
     }
 
 
-    //Открыть страницу подписки на врача
+    //Метод открывает страницу подписки на врача
     @GetMapping(value = "/subscribe")
     public String showSubscribePage(Model model) {
         model.addAttribute("client", new Client());
@@ -92,7 +92,7 @@ public class ClientController {
     }
 
 
-    //Подписаться на врача
+    // Метод выполняет подписку на врача
     @PostMapping(value = "/subscribe")
     public String subscribe(@ModelAttribute("client") Client client, @RequestParam("doctorId") long docId) {
         subscriberService.createSubscriber(client.getEmail(), docId);

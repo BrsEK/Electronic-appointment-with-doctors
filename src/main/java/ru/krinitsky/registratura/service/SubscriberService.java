@@ -12,6 +12,7 @@ public class SubscriberService {
     private DoctorService doctorService;
     private MailService mailService;
 
+
     public SubscriberService(SubscriberRepository subscriberRepository, DoctorService doctorService, MailService mailService) {
         this.subscriberRepository = subscriberRepository;
         this.doctorService = doctorService;
@@ -19,18 +20,19 @@ public class SubscriberService {
     }
 
     //Создаем нового подписчика, привязываем к нему доктора
-    public void createSubscriber(String email, long doctorId){
+    public void createSubscriber(String email, long doctorId) {
         Subscriber subscriber = new Subscriber(email, doctorService.getDoctorById(doctorId));
         subscriberRepository.save(subscriber);
     }
 
+
     // Метод оповещает всех подписчиков у выбранного врача
-    public void notifySubscribers(Doctor doctor){
+    public void notifySubscribers(Doctor doctor) {
         if (!doctor.getSubscribers().isEmpty()) {
             doctor.getSubscribers().forEach(
                     subscriber -> {
                         Doctor doctor1 = doctorService.getDoctorById(doctor.getId());
-                        mailService.send(subscriber.getEmail(),"Уведомление от поликлиники",
+                        mailService.send(subscriber.getEmail(), "Уведомление от поликлиники",
                                 createMessage(doctor));
                         subscriberRepository.delete(subscriber);
                     });
@@ -39,7 +41,7 @@ public class SubscriberService {
 
 
     // Метод формирует сообщение с доктором на которого подписан клиент
-    private String createMessage(Doctor doctor){
+    private String createMessage(Doctor doctor) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Здравствуйте, уведомляем Вас о появлении новых талонов, \n");
         stringBuilder.append("успейте записаться.\n");
