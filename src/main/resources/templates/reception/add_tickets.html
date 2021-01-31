@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head xmlns:th="http://www.w3.org/1999/xhtml">
+    <!--Вставляем шаблон с бутстрап настройками -->
+    <div th:insert="~{parts/common :: customization}"></div>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div th:insert="~{parts/navbar_reception :: navbar_reception}"></div>
+
+            <form method="post" th:action="@{/reception/addTicket}" th:object="${ticket}">
+                <fieldset enabled>
+                    <legend>Для добавления талона заполните форму ниже</legend>
+                    <div class="mb-3">
+                        <label for="dateId" class="form-label">Дата посещения</label>
+                        <input type="date" id="dateId" class="form-control" th:field="*{date}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="timeId" class="form-label">Время посещения</label>
+                        <input type="time" id="timeId" class="form-control" th:field="*{time}">
+                    </div>
+                    <div class="mb-3">
+                        <select id="selectId" name="doctorId" class="form-select">
+                            <option selected>Выберите врача</option>
+                            <option th:each="doctor : ${doctors}"
+                                    th:value="${doctor.id}"
+                                    th:text="${doctor.surname}
+                            + ' ' + ${doctor.name}
+                            + ' ' + ${doctor.patronymic}">
+                            </option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Добавить талон</button>
+                </fieldset>
+            </form>
+            <!-- Удаление талонов  -->
+
+            <br> </br>
+            <form method="post" th:action="@{/reception/deleteTicket}">
+                <div class="free-tickets">
+                    <select class="col-lg-10" name="ticketId">
+                        <option th:each="ticket : ${tickets}"
+                                th:value="${ticket.id}"
+                                th:utext="${ticket.doctor.surname}
+                              + ' ' + ${ticket.doctor.name}
+                              + ' ' + ${ticket.doctor.patronymic}
+                              + ' ' + ${ticket.date}
+                              + ' ' + ${ticket.time}">
+                        </option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Удалить талон</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

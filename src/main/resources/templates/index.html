@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css">
+    <!--Вставляем шаблон с бутстрап настройками -->
+    <div th:insert="~{parts/common :: customization}"></div>
+</head>
+<body>
+
+<div th:insert="parts/navbar_all :: navbar_all"></div>
+</body>
+</html>

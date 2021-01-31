@@ -1,0 +1,86 @@
+<!DOCTYPE html> <html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+
+
+</head>
+<body>
+<div th:insert="~{parts/navbar_all :: navbar_all}"></div>
+<div th:insert="~{parts/common :: customization}"></div>
+<div>
+    <form method="post" th:action="@{/client/addClientInTicket}" th:object="${client}">
+
+
+        <!-- Заполнение полей клиента -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div>
+                        <label for="inputSurname" class="form-label">Введите фамилию</label>
+                        <input class="form-control" type="text" id="inputSurname" th:field="*{surname}">
+                        <p th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
+                    </div>
+                    <div>
+                        <label for="inputName" class="form-label">Введите имя</label>
+                        <input class="form-control" type="text" id="inputName" th:field="*{name}">
+                    </div>
+                    <div>
+                        <label for="inputPatronymic" class="form-label">Введите отчество</label>
+                        <input class="form-control" type="text" id="inputPatronymic" th:field="*{patronymic}">
+                    </div>
+                    <div>
+                        <label for="inputPhone" class="form-label">Введите номер телефона</label>
+                        <input class="form-control" type="number" id="inputPhone" th:field="*{phoneNumber}">
+                    </div>
+                    <div>
+                        <label for="inputEmail" class="form-label">Введите почтовый адрес</label>
+                        <input class="form-control" type="email" id="inputEmail" th:field="*{email}">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Выбор специализации -->
+            <div class="col-sm">
+                <select class="form-select" aria-label="Default select example" id="specSelect">
+                    <option selected>Выберите специализацию</option>
+                    <option th:each="specialisation : ${specialisations}"
+                            th:value="${specialisation.id}"
+                            th:utext="${specialisation.title}">
+                    </option>
+                </select>
+
+
+                <select class="form-select" aria-label="Default select example" id="doctorSelect">
+                    <option selected>Выберите врача</option>
+                </select>
+
+
+                <!-- Выбор Даты -->
+                <select class="form-select" aria-label="Default select example" id="dateSelect">
+                    <option selected>Выберите дату</option>
+                </select>
+
+                <!-- Выбор времени -->
+
+
+                <select class="form-select" aria-label="Default select example" id="timeSelect"
+                        name="ticketId">
+                    <option selected>Выберите время</option>
+                </select>
+
+
+                <div buttons>
+                    <button type="submit" class="btn btn-primary btn-sm">Записаться к врачу</button>
+                </div>
+            </div>
+
+        </div>
+</div>
+
+</form>
+</div>
+
+<script src="/js/client.js"></script>
+</body>
+</html>

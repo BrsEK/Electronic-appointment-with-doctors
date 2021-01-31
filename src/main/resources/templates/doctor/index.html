@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <!--Вставляем шаблон с бутстрап настройками -->
+    <div th:insert="~{parts/common :: customization}"></div>
+</head>
+<body>
+
+<div th:insert="parts/navbar_doctor :: navbar_doctor"></div>
+
+
+<form method="post" th:action="@{/doctor/removeClient}" th:object="${doctor}">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group">
+                    <label for="newTicketsSelect">Список пациентов</label>
+                    <!--- Окно с новыми клиентами --->
+                    <select multiple class="form-control" id="newTicketsSelect" name="ticketId">
+                        <option th:each="ticket : ${ticketsToday}"
+                                th:value="${ticket.id}"
+                                th:utext="${ticket.client.surname}
+                            + ' ' + ${ticket.client.name}
+                            + ' ' + ${ticket.client.patronymic}
+                            + ' ' + ${ticket.date}
+                            + ' ' + ${ticket.time}"
+                        ></option>
+                    </select>
+                </div>
+                <!--- Кнопки отклонения и подтверждения талона --->
+                <div buttons>
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        Удалить талон
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

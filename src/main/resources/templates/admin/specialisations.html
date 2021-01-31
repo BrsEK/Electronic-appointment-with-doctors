@@ -1,0 +1,44 @@
+<!--Вставляем шаблон с бутстрап настройками -->
+<div th:insert="~{parts/common :: customization}"></div>
+</head>
+<body>
+<div th:insert="~{parts/navbar_admin :: navbar_admin}"></div>
+
+<!-- Форма добавления специализации врача -->
+<div class="mb-3">
+    <form method="post" th:action="@{/admin/addSpecialisation}" th:object="${specialisation}">
+        <fieldset enabled>
+            <legend>Добавление специализации</legend>
+            <div class="mb-3">
+                <label for="specialisationId" class="form-label">Название специализации</label>
+                <input type="text" id="specialisationId" class="form-control" th:field="*{title}">
+                <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+            </div>
+            <button type="submit" class="btn btn-primary">Добавить специализацию</button>
+        </fieldset>
+    </form>
+    </br>
+</div>
+
+
+<!-- Форма удаления специализации врача -->
+<div class="mb-3">
+    <form method="post" th:action="@{/admin/deleteSpecialisation}" >
+        <legend>Удаление специализации</legend>
+        <div class="form-row align-items-center">
+            <div class="col-auto my-1">
+                <select class="form-control-lg" id="inlineFormCustomSelect" name="specialisationId">
+                    <option selected>Выберите...</option>
+                    <option th:each="specialisation : ${specialisations}"
+                            th:value="${specialisation.id}"
+                            th:utext="${specialisation.title}">
+                    </option>
+                </select>
+                <button type="submit" class="btn btn-primary btn-lg">Удалить</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+</script>
+</body>

@@ -1,0 +1,56 @@
+<!DOCTYPE html> <html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:insert="~{parts/common :: customization}"></div>
+</head>
+<body>
+
+<div th:insert="~{parts/navbar_admin :: navbar_admin}"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h3>Для добавления работника регистратуры заполните форму ниже</h3>
+            <form method="post" th:action="@{/admin/addReceptionist}" th:object="${receptionist}">
+                <div>
+                    <input class="col-lg-10" id="surname" type="text" th:field="*{surname}" placeholder="Фамилия">
+                    <p th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
+                    </br>
+                    <input class="col-lg-10" id="name" type="text" th:field="*{name}" placeholder="Имя">
+                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                    </br>
+                    <input class="col-lg-10" id="patronymic" type="text" th:field="*{patronymic}" placeholder="Отчество">
+                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                    </br>
+                    <input class="col-lg-10" id="email" type="text" th:field="*{email}" placeholder="Электронная почта">
+                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                    </br>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-primary btn-sm">Добавить работника регистратуры</button>
+                    </p>
+                </div>
+            </form>
+
+            <form method="post" th:action="@{/admin/deleteReceptionist}">
+                <div>
+                    <select class="col-lg-10" name="receptionistId">
+                        <option th:each="receptionist : ${receptionists}"
+                                th:value="${receptionist.id}"
+                                th:text="${receptionist.surname} + ' ' +
+                                         ${receptionist.name} + ' ' +
+                                         ${receptionist.patronymic}">
+                        </option>
+                    </select>
+                    <button type="submit" class="btn btn-primary btn-sm">Удалить работника регистратуры</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

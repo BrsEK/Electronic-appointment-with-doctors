@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+<div th:fragment="navbar_admin">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand">Панель администратора</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <l class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="doctorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Операции с врачами
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="doctorDropdown">
+                        <a class="dropdown-item" href="/admin/specialisations/">Добавить специализацию</a>
+                        <a class="dropdown-item" href="/admin/doctors/">Зарегистрировать врача в системе</a>
+                    </div>
+                <li class="nav-item">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="receptionistDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Операции с работниками
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="receptionistDropdown">
+                        <a class="dropdown-item" href="/admin/receptionist/">Зарегистрировать работника регистратуры</a>
+                    </div>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/registration">Создать аккаунт</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Выход</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div th:insert="~{parts/common :: customization}"></div>
+</body>
+</html>

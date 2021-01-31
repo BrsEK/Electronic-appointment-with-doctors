@@ -1,0 +1,69 @@
+<!DOCTYPE html > <html xmlns:th="http://www.thymeleaf.org">
+<head xmlns:th="http://www.w3.org/1999/xhtml">
+    <div th:insert="~{parts/common :: customization}"></div>
+</head>
+
+<div th:insert="parts/navbar_admin :: navbar_admin"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h3>Для добавления врача заполните форму ниже</h3>
+            <form method="post" th:action="@{/admin/addDoctor}" th:object="${doctor}">
+                <div>
+                    <input class="col-lg-10" id="surname" type="text" th:field="*{surname}" placeholder="Фамилия">
+                    <p th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
+                    </br>
+                    <input class="col-lg-10" id="name" type="text" th:field="*{name}" placeholder="Имя">
+                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                    </br>
+                    <input class="col-lg-10" id="patronymic" type="text" th:field="*{patronymic}"
+                           placeholder="Отчество">
+                    <p th:if="${#fields.hasErrors('patronymic')}" th:errors="*{patronymic}"></p>
+                    </br>
+                    <input class="col-lg-10" id="email" type="email" th:field="*{email}"
+                           placeholder="Электронная почта">
+                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                    </br>
+                </div>
+                <div class="mb-3">
+                    <legend>Выберите специализацию</legend>
+                    <div class="form-row align-items-center">
+                        <div class="col-auto my-1">
+                            <select class="form-control-lg" id="inlineFormCustomSelect" name="specialisationId">
+                                <option selected>Выберите...</option>
+                                <option th:each="specialisation : ${specialisations}"
+                                        th:value="${specialisation.id}"
+                                        th:utext="${specialisation.title}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary btn-sm">Добавить врача</button>
+                    </p>
+                </div>
+            </form>
+
+
+            <form method="post" th:action="@{/admin/deleteDoctor}">
+                <div>
+                    <br> </br>
+                    <select class="col-lg-10" name="doctorEmail">
+                        <option th:each="doctor : ${doctors}"
+                                th:value="${doctor.email}"
+                                th:text="${doctor.surname} + ' ' +
+                                         ${doctor.name} + ' ' +
+                                         ${doctor.patronymic}">
+                        </option>
+                    </select>
+                    <button type="submit" class="btn btn-primary btn-sm">Удалить врача</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

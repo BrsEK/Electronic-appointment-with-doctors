@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css">
+    <title>Вход</title>
+</head>
+<body>
+
+<section class="container m-top">
+    <h3>Авторизация</h3>
+    <form method="post" th:action="@{/login}" >
+        <div class="form-group">
+            <label for="username">Введите логин</label>
+            <input name="username" type="text" class="form-control" id="username" placeholder="Введите логин">
+        </div>
+        <div class="form-group">
+            <label for="password">Введите пароль</label>
+            <input name="password" type="password" class="form-control" id="password" placeholder="Введите пароль">
+        </div>
+        <button class="btn btn-primary" type="submit">Войти</button>
+    </form>
+</section>
+
+</body>
+</html>
