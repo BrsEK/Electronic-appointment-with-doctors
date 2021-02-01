@@ -21,8 +21,9 @@
 
 Технологии, которые, я использовал для этого проекта
 ----------------------------------------------------
-o Spring Web
-o Spring Data
-o Spring Security
-o Spring Boot
+* Spring Web
+* Spring Data
+* Spring Security
+* Spring Boot
+* СУБД PostgreSQL
 
