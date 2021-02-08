@@ -21,6 +21,6 @@
 
 Технологии
 ----------------------------------------------------
-* Spring (web, data, security)
+* Spring boot (web, data, security)
 * СУБД PostgreSQL
 
