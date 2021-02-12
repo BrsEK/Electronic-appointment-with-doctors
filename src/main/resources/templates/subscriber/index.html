@@ -1,4 +1,5 @@
-<!DOCTYPE html> <html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
@@ -8,28 +9,28 @@
 <body>
 <div th:insert="~{parts/navbar_all :: navbar_all}"></div>
 <div>
-    <form method="post" th:action="@{/subscriber/subscribe}" th:object="${client}">
+    <form method="post" th:action="@{/subscriber/subscribe}" th:object="${subscriber}">
         <div class="container">
             <div class="row">
                 <div class="col-sm">
-                    <!-- Заполнение полей клиента -->
+                    <!-- Заполнение полей подписчика -->
                     <label for="inputEmail">Введите адрес электронной почты</label>
                     </br>
                     <input type="tel" id="inputEmail" th:field="*{email}">
                     <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
                     </br>
-
-                    <!-- Выбор врача -->
-                    <select class="form-select" aria-label="Default select example" id="specSelect" name="doctorId">
-                        <option selected>Выберите врача</option>
-                        <option th:each="doctor : ${doctors}"
-                                th:value="${doctor.id}"
-                                th:utext="${doctor.surname} + ' ' +
+                    <div select>
+                        <!-- Выбор врача -->
+                        <select class="form-select" aria-label="Default select example" id="specSelect" name="doctorId">
+                            <option selected>Выберите врача</option>
+                            <option th:each="doctor : ${doctors}"
+                                    th:value="${doctor.id}"
+                                    th:utext="${doctor.surname} + ' ' +
                                  ${doctor.name} + ' ' +
                                  ${doctor.patronymic} ">
-                        </option>
-                    </select>
-
+                            </option>
+                        </select>
+                    </div>
                     <div buttons>
                         <button type="submit" class="btn btn-primary btn-sm">Подписаться на свободные талоны</button>
                     </div>
