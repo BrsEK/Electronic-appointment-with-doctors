@@ -30,6 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //.antMatchers("/registration").not().fullyAuthenticated()
                 .antMatchers("/").permitAll()
+                .antMatchers("/subscriber/**").permitAll()
                 .antMatchers("/reception/**").hasRole("RECEPTION")
                 .antMatchers("/doctor/**").hasRole("DOCTOR")
                 .antMatchers("/ticket/**").permitAll()
