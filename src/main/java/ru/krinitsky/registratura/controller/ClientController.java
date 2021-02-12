@@ -22,7 +22,6 @@ public class ClientController {
     private DoctorService doctorService;
     private TicketService ticketService;
     private ClientService clientService;
-    private SubscriberService subscriberService;
 
 
     @Autowired
@@ -33,7 +32,6 @@ public class ClientController {
         this.doctorService = doctorService;
         this.ticketService = ticketService;
         this.clientService = clientService;
-        this.subscriberService = subscriberService;
     }
 
 
@@ -80,23 +78,6 @@ public class ClientController {
         }
         ticketService.addClientInTicket(client, ticketId);
         return "/client/well_done";
-    }
-
-
-    //Метод открывает страницу подписки на врача
-    @GetMapping(value = "/subscribe")
-    public String showSubscribePage(Model model) {
-        model.addAttribute("client", new Client());
-        model.addAttribute("doctors", doctorService.getDoctors());
-        return "/client/subscribe";
-    }
-
-
-    // Метод выполняет подписку на врача
-    @PostMapping(value = "/subscribe")
-    public String subscribe(@ModelAttribute("client") Client client, @RequestParam("doctorId") long docId) {
-        subscriberService.createSubscriber(client.getEmail(), docId);
-        return "redirect:/client/";
     }
 
 }
