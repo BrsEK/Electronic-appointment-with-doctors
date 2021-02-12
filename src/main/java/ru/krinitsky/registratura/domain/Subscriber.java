@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "subscribers")
@@ -19,7 +21,8 @@ public class Subscriber extends Identify {
 
     @Getter
     @Setter
-    //@NotBlank(message = "Поле не должно быть пустым")
+    @NotBlank(message = "Поле не должно быть пустым")
+    @Email
     private String email;
 
     @Getter
