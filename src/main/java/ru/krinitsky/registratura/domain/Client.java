@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
@@ -17,7 +19,7 @@ import java.util.Set;
 public class Client extends Identify {
 
 
-    @Size(min = 2)
+    @Size(message = "Поле имя должно содержать минимум 2 символа", min = 2)
     @Getter
     @Setter
     @NotNull
@@ -27,14 +29,14 @@ public class Client extends Identify {
     @Getter
     @Setter
     @NotNull
-    @Size(min = 2)
+    @Size(message = "Поле фамилия должно содержать минимум 2 символа",min = 2)
     @NotBlank
     private String surname;
 
     @Getter
     @Setter
     @NotNull
-    @Size(min = 2)
+    @Size(message = "Поле фамилия должно содержать минимум 2 символа", min = 2)
     @NotBlank
     private String patronymic;
 
@@ -42,12 +44,14 @@ public class Client extends Identify {
     @Getter
     @Setter
     @NotNull
-    private int phoneNumber;
+    @Pattern(regexp = "\\+7[0-9]{10}", message = "Телефонный номер должен начинаться с +7, затем - 10 цифр")
+    private String phoneNumber;
 
     @Getter
     @Setter
     @NotNull
     @NotBlank
+    @Email
     private String email;
 
     @Getter

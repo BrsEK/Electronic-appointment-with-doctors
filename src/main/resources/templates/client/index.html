@@ -24,18 +24,22 @@
                     <div>
                         <label for="inputName" class="form-label">Введите имя</label>
                         <input class="form-control" type="text" id="inputName" th:field="*{name}">
+                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
                     </div>
                     <div>
                         <label for="inputPatronymic" class="form-label">Введите отчество</label>
                         <input class="form-control" type="text" id="inputPatronymic" th:field="*{patronymic}">
+                        <p th:if="${#fields.hasErrors('patronymic')}" th:errors="*{patronymic}"></p>
                     </div>
                     <div>
                         <label for="inputPhone" class="form-label">Введите номер телефона</label>
-                        <input class="form-control" type="number" id="inputPhone" th:field="*{phoneNumber}">
+                        <input class="form-control" type="text" id="inputPhone" th:field="*{phoneNumber}">
+                        <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
                     </div>
                     <div>
                         <label for="inputEmail" class="form-label">Введите почтовый адрес</label>
                         <input class="form-control" type="email" id="inputEmail" th:field="*{email}">
+                        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
                     </div>
                 </div>
             </div>
