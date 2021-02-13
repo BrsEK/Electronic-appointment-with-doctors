@@ -12,22 +12,23 @@ import ru.krinitsky.registratura.service.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Controller
 @RequestMapping("/client")
 public class ClientController {
 
-    private SpecialisationService specialisationService;
-    private DoctorService doctorService;
-    private TicketService ticketService;
-    private ClientService clientService;
+    private final SpecialisationService specialisationService;
+    private final DoctorService doctorService;
+    private final TicketService ticketService;
+    private final ClientService clientService;
+    private Map<String, ?> allAttributes;
 
 
     @Autowired
     public ClientController(SpecialisationService specialisationService, DoctorService doctorService,
-                            TicketService ticketService, ClientService clientService,
-                            SubscriberService subscriberService) {
+                            TicketService ticketService, ClientService clientService){
         this.specialisationService = specialisationService;
         this.doctorService = doctorService;
         this.ticketService = ticketService;
@@ -40,6 +41,7 @@ public class ClientController {
     public String showIndexPage(Model model) {
         model.addAttribute("specialisations", specialisationService.getSpecialisations());
         model.addAttribute("client", new Client());
+        allAttributes = model.asMap();
         return "client/index";
     }
 
@@ -72,8 +74,10 @@ public class ClientController {
 
     //Метод регистрирует клиента в талоне
     @PostMapping(value = "/addClientInTicket")
-    public String register(@RequestParam("ticketId") long ticketId, @ModelAttribute("client") @Valid Client client, BindingResult bindingResult) {
+    public String register(@RequestParam("ticketId") long ticketId, @ModelAttribute("client") @Valid Client client,
+                           BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.mergeAttributes(allAttributes);
             return "/client/index";
         }
         ticketService.addClientInTicket(client, ticketId);
