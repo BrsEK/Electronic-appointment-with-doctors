@@ -4,9 +4,13 @@ package ru.krinitsky.registratura.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.krinitsky.registratura.domain.Ticket;
 import ru.krinitsky.registratura.service.*;
+
+import javax.validation.Valid;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/reception")
@@ -16,6 +20,7 @@ public class ReceptionController {
     private SpecialisationService specialisationService;
     private DoctorService doctorService;
     private SubscriberService subscriberService;
+    private Map<String, ?> allAttributes;
 
 
     @Autowired
@@ -47,13 +52,18 @@ public class ReceptionController {
         model.addAttribute("ticket", new Ticket());
         model.addAttribute("tickets", ticketService.getSortByDateAndTimeTickets());
         model.addAttribute("doctors", doctorService.getDoctors());
+        allAttributes = model.asMap();
         return "reception/add_tickets";
     }
 
 
     // Метод добавляет талон c закрепленным к нему доктором в базу данных
     @PostMapping(value = "/addTicket")
-    public String addTicket(@ModelAttribute("ticket") Ticket ticket, @RequestParam("doctorId") long doctorId) {
+    public String addTicket(@ModelAttribute("ticket") @Valid Ticket ticket, BindingResult bindingResult, Model model, @RequestParam("doctorId") long doctorId) {
+        if (bindingResult.hasErrors()){
+            model.mergeAttributes(allAttributes);
+            return "reception/add_tickets";
+        }
         ticketService.addDoctorInTicket(ticket, doctorId);
         subscriberService.notifySubscribers(doctorService.getDoctorById(doctorId));
         ticketService.addTicket(ticket);

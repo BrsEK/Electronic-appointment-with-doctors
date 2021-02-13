@@ -7,6 +7,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -18,12 +19,14 @@ public class Ticket extends Identify {
 
     @Getter
     @Setter
+    @NotNull(message = "Поле должно содержать дату посещения")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private LocalDate date;
 
     @Getter
     @Setter
+    @NotNull(message = "Поле должно содержать время посещения")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private LocalTime time;

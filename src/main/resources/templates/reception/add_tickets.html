@@ -15,10 +15,12 @@
                     <div class="mb-3">
                         <label for="dateId" class="form-label">Дата посещения</label>
                         <input type="date" id="dateId" class="form-control" th:field="*{date}">
+                        <p th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></p>
                     </div>
                     <div class="mb-3">
                         <label for="timeId" class="form-label">Время посещения</label>
                         <input type="time" id="timeId" class="form-control" th:field="*{time}">
+                        <p th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></p>
                     </div>
                     <div class="mb-3">
                         <select id="selectId" name="doctorId" class="form-select">
@@ -40,6 +42,7 @@
             <form method="post" th:action="@{/reception/deleteTicket}">
                 <div class="free-tickets">
                     <select class="col-lg-10" name="ticketId">
+                        <option selected>Выберите талон</option>
                         <option th:each="ticket : ${tickets}"
                                 th:value="${ticket.id}"
                                 th:utext="${ticket.doctor.surname}
