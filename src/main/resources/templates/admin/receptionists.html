@@ -1,4 +1,5 @@
-<!DOCTYPE html> <html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,7 +22,8 @@
                     <input class="col-lg-10" id="name" type="text" th:field="*{name}" placeholder="Имя">
                     <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
                     </br>
-                    <input class="col-lg-10" id="patronymic" type="text" th:field="*{patronymic}" placeholder="Отчество">
+                    <input class="col-lg-10" id="patronymic" type="text" th:field="*{patronymic}"
+                           placeholder="Отчество">
                     <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
                     </br>
                     <input class="col-lg-10" id="email" type="text" th:field="*{email}" placeholder="Электронная почта">
