@@ -22,7 +22,6 @@ public class ClientController {
     private final SpecialisationService specialisationService;
     private final DoctorService doctorService;
     private final TicketService ticketService;
-    private final ClientService clientService;
     private Map<String, ?> allAttributes;
 
 
@@ -32,7 +31,6 @@ public class ClientController {
         this.specialisationService = specialisationService;
         this.doctorService = doctorService;
         this.ticketService = ticketService;
-        this.clientService = clientService;
     }
 
 
