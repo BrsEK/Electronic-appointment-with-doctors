@@ -28,7 +28,7 @@ public class ClientController {
 
     @Autowired
     public ClientController(SpecialisationService specialisationService, DoctorService doctorService,
-                            TicketService ticketService, ClientService clientService){
+                            TicketService ticketService, ClientService clientService) {
         this.specialisationService = specialisationService;
         this.doctorService = doctorService;
         this.ticketService = ticketService;
@@ -48,8 +48,7 @@ public class ClientController {
     @GetMapping(value = "/doctors")
     @ResponseBody
     public Set<Doctor> getDoctors(@RequestParam("specId") long specialisationId) {
-        Set<Doctor> doctors = doctorService.getDoctorsBySpecialisation(specialisationId);
-        return doctors;
+        return doctorService.getDoctorsBySpecialisation(specialisationId);
     }
 
 
@@ -57,8 +56,7 @@ public class ClientController {
     @GetMapping(value = "/dates")
     @ResponseBody
     public Set<Ticket> changeTickets(@RequestParam("docId") long doctorId) {
-        Set<Ticket> tickets = ticketService.getTicketsAtDoctor(doctorId);
-        return tickets;
+        return ticketService.getTicketsAtDoctor(doctorId);
     }
 
 
