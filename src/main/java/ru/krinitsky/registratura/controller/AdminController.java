@@ -34,14 +34,13 @@ public class AdminController {
     }
 
 
-    // Метод открывает главную страницу администратора
+
     @GetMapping(value = "/")
     public String showIndex() {
         return "/admin/index";
     }
 
 
-    // Открывает окно добавления врачей в базу данных
     @GetMapping(value = "/doctors")
     public String showAddDoctor(Model model) {
         model.addAttribute("doctor", new Doctor());
@@ -51,7 +50,6 @@ public class AdminController {
     }
 
 
-    // Метод привязывает врачей к специальности и добавляет их в базу
     @PostMapping(value = "/addDoctor")
     public String addDoctor(@ModelAttribute("doctor") @Valid Doctor doctor,
                             BindingResult bindingResult,
@@ -66,7 +64,6 @@ public class AdminController {
     }
 
 
-    // Метод удаляет врача из базы вместе с его аккаунтом
     @PostMapping(value = "/deleteDoctor")
     public String deleteDoctor(@RequestParam(name = "doctorEmail") String doctorEmail) {
         doctorService.removeDoctorWithAccount(doctorEmail);
@@ -74,7 +71,6 @@ public class AdminController {
     }
 
 
-    // Метод открывает окно добавления специализации
     @GetMapping(value = "/specialisations")
     public String showSpecialisations(Model model) {
         model.addAttribute("specialisation", new Specialisation());
@@ -84,7 +80,6 @@ public class AdminController {
     }
 
 
-    // Метод добавляет специализацию  и возвращает страницу
     @PostMapping(value = "/addSpecialisation")
     public String addSpecialisation(@ModelAttribute("specialisation") @Valid Specialisation specialisation,
                                     BindingResult bindingResult) {
@@ -96,7 +91,6 @@ public class AdminController {
     }
 
 
-    // Метод удаляет специализацию  и возвращает страницу
     @PostMapping(value = "/deleteSpecialisation")
     public String deleteSpecialisation(@RequestParam("specialisationId") long specialisationId) {
         specialisationService.deleteSpecialisations(specialisationId);
@@ -104,7 +98,6 @@ public class AdminController {
     }
 
 
-    // Метод открывает окно добавления работников регистратуры
     @GetMapping(value = "/receptionist")
     public String showReceptionist(Model model) {
         model.addAttribute("receptionist", new Receptionist());
@@ -113,7 +106,6 @@ public class AdminController {
     }
 
 
-    // Метод добавляет работника регистратуры  и возвращает страницу
     @PostMapping(value = "/addReceptionist")
     public String addReceptionist(@ModelAttribute("receptionist") @Valid Receptionist receptionist, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -124,7 +116,6 @@ public class AdminController {
     }
 
 
-    // Метод удаляем работников регистратуры из базы и возвращает страницу
     @PostMapping(value = "/deleteReceptionist")
     public String deleteReceptionist(@RequestParam("receptionistId") long receptionistId) {
         receptionService.deleteReceptionist(receptionistId);

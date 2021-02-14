@@ -36,7 +36,6 @@ public class ClientController {
     }
 
 
-    // Метод открывает главную страницу клиента
     @GetMapping(value = "/")
     public String showIndexPage(Model model) {
         model.addAttribute("specialisations", specialisationService.getSpecialisations());
@@ -46,7 +45,6 @@ public class ClientController {
     }
 
 
-    // Метод возвращает докторов для выпадающего списка
     @GetMapping(value = "/doctors")
     @ResponseBody
     public Set<Doctor> getDoctors(@RequestParam("specId") long specialisationId) {
@@ -72,7 +70,6 @@ public class ClientController {
     }
 
 
-    //Метод регистрирует клиента в талоне
     @PostMapping(value = "/addClientInTicket")
     public String register(@RequestParam("ticketId") long ticketId, @ModelAttribute("client") @Valid Client client,
                            BindingResult bindingResult, Model model) {

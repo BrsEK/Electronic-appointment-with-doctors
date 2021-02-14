@@ -37,7 +37,6 @@ public class ReceptionController {
     }
 
 
-    // Метод открывает главную страницу
     @GetMapping(value = "/")
     public String showIndex(Model model) {
         model.addAttribute("receptionist", receptionService.getReceptionistByLogin());
@@ -45,7 +44,6 @@ public class ReceptionController {
     }
 
 
-    // Метод открываем страницу создания талона
     @GetMapping(value = "/addTicket")
     public String showPageAddTicket(Model model) {
         model.addAttribute("receptionist", receptionService.getReceptionistByLogin());
@@ -57,7 +55,6 @@ public class ReceptionController {
     }
 
 
-    // Метод добавляет талон c закрепленным к нему доктором в базу данных
     @PostMapping(value = "/addTicket")
     public String addTicket(@ModelAttribute("ticket") @Valid Ticket ticket, BindingResult bindingResult, Model model, @RequestParam("doctorId") long doctorId) {
         if (bindingResult.hasErrors()){
@@ -71,7 +68,6 @@ public class ReceptionController {
     }
 
 
-    // Метод удаляет удаляет талон
     @PostMapping(value = "/deleteTicket")
     public String deleteTicket(@RequestParam(name = "ticketId") long ticketId) {
         ticketService.deleteTicketById(ticketId);
@@ -79,7 +75,6 @@ public class ReceptionController {
     }
 
 
-    // Метод открывает страницу с талонами
     @GetMapping(value = "/tickets")
     public String showTickets(Model model) {
         model.addAttribute("receptionist", receptionService.getReceptionistByLogin());
@@ -88,7 +83,6 @@ public class ReceptionController {
     }
 
 
-    // Метод для подтверждения талона
     @PostMapping(value = "/tickets", params = "accept")
     public String acceptTicket(@RequestParam(name = "ticketId") long ticketId) {
         ticketService.acceptTicket(ticketId);
@@ -96,7 +90,6 @@ public class ReceptionController {
     }
 
 
-    // Метод для отклонения талона
     @PostMapping(value = "/tickets", params = "reject")
     public String rejectTicket(@RequestParam(name = "ticketId") long ticketId) {
         ticketService.rejectTicket(ticketId);

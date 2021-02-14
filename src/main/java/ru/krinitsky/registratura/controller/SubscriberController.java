@@ -28,7 +28,6 @@ public class SubscriberController {
     }
 
 
-    //Метод открывает страницу подписки на врача
     @GetMapping(value = "/")
     public String showSubscribePage(Model model) {
         model.addAttribute("subscriber", new Subscriber());
@@ -38,7 +37,6 @@ public class SubscriberController {
     }
 
 
-    // Метод выполняет подписку на врача
     @PostMapping(value = "/subscribe")
     public String subscribe(@ModelAttribute("subscriber") @Valid Subscriber subscriber, BindingResult bindingResult,
                             @RequestParam("doctorId") long docId, Model model) {

@@ -17,14 +17,12 @@ public class DoctorController {
 
 
     @Autowired
-    public DoctorController(DoctorService doctorService,
-                            SpecialisationService specialisationService, TicketService ticketService) {
+    public DoctorController(DoctorService doctorService, TicketService ticketService) {
         this.doctorService = doctorService;
         this.ticketService = ticketService;
     }
 
 
-    // Метод открывает главную страницу доктора
     @GetMapping(value = "/")
     public String showIndex(Model model) {
         model.addAttribute("ticketsToday",
@@ -33,9 +31,9 @@ public class DoctorController {
         return "/doctor/index";
     }
 
-    // Метод удаляет талон, а в месте с ним автоматически удаляется клиент
+
     @PostMapping(value = "removeClient")
-    public String removeClient(@RequestParam("ticketId") long ticketId){
+    public String removeClient(@RequestParam("ticketId") long ticketId) {
         ticketService.removeTicketById(ticketId);
         return "redirect:/doctor/";
     }
