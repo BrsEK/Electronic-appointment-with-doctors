@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class SpecialisationService {
 
-    SpecialisationRepository specialisationRepository;
+    private final SpecialisationRepository specialisationRepository;
 
     @Autowired
     public SpecialisationService(SpecialisationRepository specialisationRepository) {
@@ -27,7 +27,7 @@ public class SpecialisationService {
 
 
     // Метод возвращает лист со специализациями которые есть в базе данных
-    public List getSpecialisations() {
+    public List<Specialisation> getSpecialisations() {
         return specialisationRepository.findAll();
     }
 

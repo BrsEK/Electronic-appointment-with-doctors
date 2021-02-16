@@ -18,17 +18,15 @@ import java.util.Set;
 @Service
 public class DoctorService {
 
-    private DoctorRepository doctorRepository;
-    private SpecialisationRepository specialisationRepository;
-    private TicketRepository ticketRepository;
-    private UserRepository userRepository;
+    private final DoctorRepository doctorRepository;
+    private final SpecialisationRepository specialisationRepository;
+    private final UserRepository userRepository;
 
 
     @Autowired
     public DoctorService(DoctorRepository doctorRepository, SpecialisationRepository specialisationRepository, TicketRepository ticketRepository, UserRepository userRepository) {
         this.doctorRepository = doctorRepository;
         this.specialisationRepository = specialisationRepository;
-        this.ticketRepository = ticketRepository;
         this.userRepository = userRepository;
     }
 

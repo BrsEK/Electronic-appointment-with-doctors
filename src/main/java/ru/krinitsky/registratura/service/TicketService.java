@@ -20,11 +20,9 @@ import java.util.stream.Collectors;
 @Service
 public class TicketService {
 
-    private TicketRepository ticketRepository;
-    private DoctorRepository doctorRepository;
-    private ClientService clientService;
-    private SubscriberRepository subscriberRepository;
-    private MailService mailService;
+    private final TicketRepository ticketRepository;
+    private final DoctorRepository doctorRepository;
+    private final ClientService clientService;
 
     @Autowired
     public TicketService(TicketRepository ticketRepository,
@@ -35,8 +33,6 @@ public class TicketService {
         this.ticketRepository = ticketRepository;
         this.doctorRepository = doctorRepository;
         this.clientService = clientService;
-        this.subscriberRepository = subscriberRepository;
-        this.mailService = mailService;
     }
 
 
@@ -76,9 +72,10 @@ public class TicketService {
     //Метод возвращает талоны c записанными в них клиентами по выбранному доктору
     public Set<Ticket> getDoctorTicketsContainsClients(long doctorId) {
         Doctor doctor = doctorRepository.findById(doctorId).get();
-        Set<Ticket> tickets = doctor.getTickets().stream().filter(ticket -> ticket.getClient() != null)
-                .filter(ticket -> ticket.isConfirmed()).collect(Collectors.toSet());
-        return tickets;
+        return doctor.getTickets().stream()
+                .filter(ticket -> ticket.getClient() != null)
+                .filter(ticket -> ticket.isConfirmed())
+                .collect(Collectors.toSet());
     }
 
 
@@ -109,10 +106,8 @@ public class TicketService {
     // Проверяем что клиент есть в талоне и статус талона не подтвержден
     public List<Ticket> getNewTickets() {
         List<Ticket> tickets = ticketRepository.findAll();
-        List<Ticket> newTickets = tickets.stream()
-                .filter((ticket) -> ticket.getClient() != null && ticket.isConfirmed() == false)
+        return tickets.stream().filter((ticket) -> ticket.getClient() != null && ticket.isConfirmed())
                 .collect(Collectors.toList());
-        return newTickets;
     }
 
 
@@ -149,8 +144,7 @@ public class TicketService {
     // Метод находит талоны которые принадлежат одному врачу и которые относятся к одной дате
     public List<Ticket> getTicketByDoctorAndHisDate(long ticketId) {
         Ticket ticket = ticketRepository.findById(ticketId).get();
-        List<Ticket> ticketsWithSingleDate = ticketRepository.findByDoctorAndDate(ticket.getDoctor(), ticket.getDate());
-        return ticketsWithSingleDate;
+        return ticketRepository.findByDoctorAndDate(ticket.getDoctor(), ticket.getDate());
     }
 
 

@@ -8,12 +8,12 @@ import ru.krinitsky.registratura.reposytory.ClientRepository;
 @Service
 public class ClientService {
 
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
 
     @Autowired
     public ClientService(ClientRepository clientRepository) {
-        this.clientRepository = clientRepository;;
+        this.clientRepository = clientRepository;
     }
 
     //Добавляем клиента в базу данных

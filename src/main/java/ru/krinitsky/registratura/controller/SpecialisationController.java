@@ -11,7 +11,7 @@ import ru.krinitsky.registratura.service.SpecialisationService;
 @RequestMapping("/specialisation")
 public class SpecialisationController {
 
-    private SpecialisationService specialisationService;
+    private final SpecialisationService specialisationService;
 
     @Autowired
     public SpecialisationController(SpecialisationService specialisationService) {

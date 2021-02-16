@@ -5,15 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.krinitsky.registratura.service.DoctorService;
-import ru.krinitsky.registratura.service.SpecialisationService;
 import ru.krinitsky.registratura.service.TicketService;
 
 @Controller
 @RequestMapping("/doctor")
 public class DoctorController {
 
-    private DoctorService doctorService;
-    private TicketService ticketService;
+    private final DoctorService doctorService;
+    private final TicketService ticketService;
 
 
     @Autowired

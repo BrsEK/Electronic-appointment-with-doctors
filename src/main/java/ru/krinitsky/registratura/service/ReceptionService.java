@@ -1,6 +1,5 @@
 package ru.krinitsky.registratura.service;
 
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,19 +15,16 @@ import java.util.List;
 @Service
 public class ReceptionService {
 
-    private DoctorRepository doctorRepository;
-    private TicketRepository ticketRepository;
-    private SpecialisationRepository specialisationRepository;
-    private ReceptionRepository receptionRepository;
-    private UserRepository userRepository;
-    private  SubscriberService subscriberService;
+    private final DoctorRepository doctorRepository;
+    private final TicketRepository ticketRepository;
+    private final ReceptionRepository receptionRepository;
+    private final UserRepository userRepository;
 
 
     @Autowired
     public ReceptionService(DoctorRepository doctorRepository, TicketRepository ticketRepository, SpecialisationRepository specialisationRepository, ReceptionRepository receptionRepository, UserRepository userRepository) {
         this.doctorRepository = doctorRepository;
         this.ticketRepository = ticketRepository;
-        this.specialisationRepository = specialisationRepository;
         this.receptionRepository = receptionRepository;
         this.userRepository = userRepository;
     }

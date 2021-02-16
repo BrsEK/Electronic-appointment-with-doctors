@@ -15,12 +15,11 @@ import java.util.Map;
 @Controller
 @RequestMapping("/reception")
 public class ReceptionController {
-    private ReceptionService receptionService;
-    private TicketService ticketService;
-    private SpecialisationService specialisationService;
-    private DoctorService doctorService;
-    private SubscriberService subscriberService;
-    private Map<String, ?> allAttributes;
+    private final ReceptionService receptionService;
+    private final TicketService ticketService;
+    private final DoctorService doctorService;
+    private final SubscriberService subscriberService;
+    private  Map<String, ?> allAttributes;
 
 
     @Autowired
@@ -31,7 +30,6 @@ public class ReceptionController {
             DoctorService doctorService, SubscriberService subscriberService) {
         this.receptionService = receptionService;
         this.ticketService = ticketService;
-        this.specialisationService = specialisationService;
         this.doctorService = doctorService;
         this.subscriberService = subscriberService;
     }

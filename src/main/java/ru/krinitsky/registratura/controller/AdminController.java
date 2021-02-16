@@ -19,9 +19,9 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    private DoctorService doctorService;
-    private SpecialisationService specialisationService;
-    private ReceptionService receptionService;
+    private final DoctorService doctorService;
+    private final SpecialisationService specialisationService;
+    private final ReceptionService receptionService;
 
 
     @Autowired

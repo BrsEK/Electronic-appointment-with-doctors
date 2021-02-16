@@ -14,9 +14,9 @@ import ru.krinitsky.registratura.reposytory.UserRepository;
 @Service
 public class UserService implements UserDetailsService {
 
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private BCryptPasswordEncoder encoder;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final BCryptPasswordEncoder encoder;
 
     private final static int ROLE_ID_ADMIN = 1;
     private final static int ROLE_ID_DOCTOR = 2;

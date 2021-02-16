@@ -16,8 +16,8 @@ import java.util.Map;
 @RequestMapping("/subscriber")
 public class SubscriberController {
 
-    private DoctorService doctorService;
-    private SubscriberService subscriberService;
+    private final DoctorService doctorService;
+    private final SubscriberService subscriberService;
     private Map<String, ?> attributes;
 
 

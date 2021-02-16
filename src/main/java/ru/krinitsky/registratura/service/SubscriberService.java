@@ -8,9 +8,9 @@ import ru.krinitsky.registratura.reposytory.SubscriberRepository;
 @Service
 public class SubscriberService {
 
-    private SubscriberRepository subscriberRepository;
-    private DoctorService doctorService;
-    private MailService mailService;
+    private final SubscriberRepository subscriberRepository;
+    private final DoctorService doctorService;
+    private final MailService mailService;
 
 
     public SubscriberService(SubscriberRepository subscriberRepository, DoctorService doctorService, MailService mailService) {
