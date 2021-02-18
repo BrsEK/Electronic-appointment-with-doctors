@@ -53,7 +53,7 @@ public class DoctorService {
     // Метод добавляет врача в базу данных
     // Проверяем на наличие доктора с таким же email
     public void addDoctor(Doctor doctor) {
-        if (doctorRepository.findByEmail(doctor.getEmail().toString()).isEmpty()) {
+        if (doctorRepository.findByEmail(doctor.getEmail()).isEmpty()) {
             doctorRepository.save(doctor);
         }
     }
