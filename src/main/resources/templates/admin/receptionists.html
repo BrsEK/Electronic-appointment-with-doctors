@@ -39,7 +39,7 @@
 
             <form method="post" th:action="@{/admin/deleteReceptionist}">
                 <div>
-                    <select class="col-lg-10" name="receptionistId">
+                    <select class="col-lg-10" name="receptionistId" required>
                         <option th:each="receptionist : ${receptionists}"
                                 th:value="${receptionist.id}"
                                 th:text="${receptionist.surname} + ' ' +
