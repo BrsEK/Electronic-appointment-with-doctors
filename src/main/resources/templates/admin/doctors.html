@@ -1,8 +1,8 @@
 <!DOCTYPE html > <html xmlns:th="http://www.thymeleaf.org">
 <head xmlns:th="http://www.w3.org/1999/xhtml">
-    <div th:insert="~{parts/common :: customization}"></div>
-</head>
 
+</head>
+<div th:insert="~{parts/common :: customization}"></div>
 <div th:insert="parts/navbar_admin :: navbar_admin"></div>
 
 <div class="container">
@@ -27,11 +27,10 @@
                     </br>
                 </div>
                 <div class="mb-3">
-                    <legend>Выберите специализацию</legend>
                     <div class="form-row align-items-center">
                         <div class="col-auto my-1">
-                            <select class="form-control-lg" id="inlineFormCustomSelect" name="specialisationId">
-                                <option selected>Выберите...</option>
+                            <select class="form-control" id="inlineFormCustomSelect" name="specialisationId" required>
+                                <option selected disabled value="">Специализация...</option>
                                 <option th:each="specialisation : ${specialisations}"
                                         th:value="${specialisation.id}"
                                         th:utext="${specialisation.title}">
@@ -49,8 +48,10 @@
 
             <form method="post" th:action="@{/admin/deleteDoctor}">
                 <div>
-                    <br> </br>
-                    <select class="col-lg-10" name="doctorEmail">
+                    <br>
+                    <h3>Удаление врача из системы</h3>
+                    <select class="col-lg-10" name="doctorEmail" required>
+                        <option selected disabled value="">Выберите врача...</option>
                         <option th:each="doctor : ${doctors}"
                                 th:value="${doctor.email}"
                                 th:text="${doctor.surname} + ' ' +
