@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <label for="newTicketsSelect">Список пациентов</label>
                     <!--- Окно с новыми клиентами --->
-                    <select multiple class="form-control" id="newTicketsSelect" name="ticketId">
+                    <select multiple class="form-control" id="newTicketsSelect" name="ticketId" required>
                         <option th:each="ticket : ${ticketsToday}"
                                 th:value="${ticket.id}"
                                 th:utext="${ticket.client.surname}
