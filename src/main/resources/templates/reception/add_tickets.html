@@ -23,8 +23,8 @@
                         <p th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></p>
                     </div>
                     <div class="mb-3">
-                        <select id="selectId" name="doctorId" class="form-select">
-                            <option selected>Выберите врача</option>
+                        <select id="selectId" name="doctorId" class="form-select" required>
+                            <option selected disabled value="">Выберите врача...</option>
                             <option th:each="doctor : ${doctors}"
                                     th:value="${doctor.id}"
                                     th:text="${doctor.surname}
@@ -38,11 +38,11 @@
             </form>
             <!-- Удаление талонов  -->
 
-            <br> </br>
+            <br>
             <form method="post" th:action="@{/reception/deleteTicket}">
                 <div class="free-tickets">
-                    <select class="col-lg-10" name="ticketId">
-                        <option selected>Выберите талон</option>
+                    <select class="col-lg-10" name="ticketId" required>
+                        <option selected disabled value="">Выберите талон...</option>
                         <option th:each="ticket : ${tickets}"
                                 th:value="${ticket.id}"
                                 th:utext="${ticket.doctor.surname}
