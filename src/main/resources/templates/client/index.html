@@ -1,4 +1,5 @@
-<!DOCTYPE html> <html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -47,8 +48,8 @@
 
             <!-- Выбор специализации -->
             <div class="col-sm">
-                <select class="form-select" aria-label="Default select example" id="specSelect">
-                    <option selected>Выберите специализацию</option>
+                <select class="form-select" aria-label="Default select example" id="specSelect" required>
+                    <option selected disabled value="">Выберите специализацию</option>
                     <option th:each="specialisation : ${specialisations}"
                             th:value="${specialisation.id}"
                             th:utext="${specialisation.title}">
@@ -56,22 +57,22 @@
                 </select>
 
 
-                <select class="form-select" aria-label="Default select example" id="doctorSelect">
-                    <option selected>Выберите врача</option>
+                <select class="form-select" aria-label="Default select example" id="doctorSelect" required>
+                    <option selected disabled value="">Выберите врача</option>
                 </select>
 
 
                 <!-- Выбор Даты -->
-                <select class="form-select" aria-label="Default select example" id="dateSelect">
-                    <option selected>Выберите дату</option>
+                <select class="form-select" aria-label="Default select example" id="dateSelect" required>
+                    <option selected disabled value="">Выберите дату</option>
                 </select>
 
                 <!-- Выбор времени -->
 
 
                 <select class="form-select" aria-label="Default select example" id="timeSelect"
-                        name="ticketId">
-                    <option selected>Выберите время</option>
+                        name="ticketId" required>
+                    <option selected disabled value="">Выберите время</option>
                 </select>
 
 
