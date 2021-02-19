@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
 
@@ -21,8 +20,9 @@
                     </br>
                     <div select>
                         <!-- Выбор врача -->
-                        <select class="form-select" aria-label="Default select example" id="specSelect" name="doctorId">
-                            <option selected>Выберите врача</option>
+                        <select class="form-select" aria-label="Default select example" id="specSelect" name="doctorId"
+                                required>
+                            <option selected disabled value="">Выберите врача</option>
                             <option th:each="doctor : ${doctors}"
                                     th:value="${doctor.id}"
                                     th:utext="${doctor.surname} + ' ' +
