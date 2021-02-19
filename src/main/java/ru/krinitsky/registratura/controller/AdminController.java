@@ -14,6 +14,7 @@ import ru.krinitsky.registratura.service.ReceptionService;
 import ru.krinitsky.registratura.service.SpecialisationService;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 
 @Controller
@@ -22,6 +23,7 @@ public class AdminController {
     private final DoctorService doctorService;
     private final SpecialisationService specialisationService;
     private final ReceptionService receptionService;
+    private Map<String, ?> receptionAttributes;
 
 
     @Autowired
@@ -102,13 +104,16 @@ public class AdminController {
     public String showReceptionist(Model model) {
         model.addAttribute("receptionist", new Receptionist());
         model.addAttribute("receptionists", receptionService.getReceptionists());
+        receptionAttributes = model.asMap();
         return "/admin/receptionists";
     }
 
 
     @PostMapping(value = "/addReceptionist")
-    public String addReceptionist(@ModelAttribute("receptionist") @Valid Receptionist receptionist, BindingResult bindingResult) {
+    public String addReceptionist(@ModelAttribute("receptionist") @Valid Receptionist receptionist,
+                                  BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.mergeAttributes(receptionAttributes);
             return "/admin/receptionists";
         }
         receptionService.addReceptionist(receptionist);
